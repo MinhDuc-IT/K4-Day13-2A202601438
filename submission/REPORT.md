@@ -4,7 +4,7 @@
 
 - Tên nhóm: Tứ Khuyển
 - Repository URL: [https://github.com/MinhDuc-IT/K4-Day13-2A202601438](https://github.com/MinhDuc-IT/K4-Day13-2A202601438)
-- Commit SHA cuối: 
+- Commit SHA cuối: `06ebe359accbf3059cf2d0f53c569a2f1bdf7189`
 - Thành viên và vai trò:
   - Phạm Văn Vinh (01988) — P1: Logging & PII
   - Ngô Huy Hoàn (01925) — P2: Tracing & Prompt Version
@@ -70,7 +70,7 @@
 | Phạm Văn Vinh (01988) — P1   | Correlation ID middleware, log enrichment (`user_id_hash`, `session_id`, `feature`, `model`, `env`), PII scrubbing processor, evidence CP1 | `eec29ec`, `d8a99b2`, `3647678` — [PR #1](https://github.com/MinhDuc-IT/K4-Day13-2A202601438/pull/1) | Correlation ID phải propagate xuyên suốt request và xuất hiện trong log JSON; PII phải redact trước khi ghi file, không chỉ che ở response. |
 | Ngô Huy Hoàn (01925) — P2    | Langfuse tracing, prompt `day13-chat` v1/v2, label baseline/candidate/production, rollback, ≥10 traces                                     | `ae2d15b`, `d787877` — [PR #2](https://github.com/MinhDuc-IT/K4-Day13-2A202601438/pull/2)            | Prompt versioning giúp truy xuất version đã dùng trong trace; đổi label/rollback an toàn mà không cần deploy lại code.                      |
 | Ngô Văn Kiệt (01524) — P3    | Dashboard 6 panel từ `data/logs.jsonl`, SLO, alert rules, validator 6/6                                                                    | `c250939`, `4dade61` — [PR #3](https://github.com/MinhDuc-IT/K4-Day13-2A202601438/pull/3)            | Metrics từ log JSON là nguồn chuẩn cho dashboard contract; SLO và alert nối symptom → điều tra trace → log.                                 |
-| Nguyễn Minh Đức (01438) — P4 | Điều tra challenge CP3 (inject incident, metrics → log → root cause), fix/verify, hoàn thiện REPORT và evidence                            | *(commit nộp bài cuối — leader)*                                                                     | Luồng observability thực tế: phát hiện triệu chứng từ metrics, khoanh vùng bằng trace, chứng minh root cause bằng log có correlation ID.    |
+| Nguyễn Minh Đức (01438) — P4 | Điều tra challenge CP3 (inject incident, metrics → log → root cause), fix/verify, hoàn thiện REPORT và evidence                            | `06ebe359accbf3059cf2d0f53c569a2f1bdf7189` — [commit](https://github.com/MinhDuc-IT/K4-Day13-2A202601438/commit/06ebe359accbf3059cf2d0f53c569a2f1bdf7189) | Luồng observability thực tế: phát hiện triệu chứng từ metrics, khoanh vùng bằng trace, chứng minh root cause bằng log có correlation ID.    |
 
 
 ## 8. Demo cuối (Metrics → Traces → Logs → Root cause)
@@ -88,6 +88,6 @@
 - `python scripts/validate_dashboard.py` — 6/6 panel
 - `submission/REPORT.md` đầy đủ
 - Evidence trong `submission/evidence/`
-- Push commit cuối và cập nhật Commit SHA mục 1
+- Push commit cuối và cập nhật Commit SHA mục 1 — `06ebe359accbf3059cf2d0f53c569a2f1bdf7189`
 - Không commit `.env`, secret, PII nguyên văn
 
