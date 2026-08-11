@@ -1,0 +1,42 @@
+CP3 Challenge Investigation — day13-k4-observability-v1
+Timestamp: 2026-08-11 (local run)
+
+=== Before incident (baseline after server start) ===
+incidents.rag_slow: false
+
+=== After inject_incident.py (reads config/challenge.json) ===
+incidents.rag_slow: true
+Challenge queries: 5, feature=monitoring, concurrency=5
+
+Load test latencies (HTTP, ms):
+  req-339eacae | monitoring | 9898.8
+  req-e3de9439 | monitoring | 9901.7
+  req-91031db3 | monitoring | 15224.4
+  req-5b432677 | monitoring | 15223.8
+  req-1a6a738a | monitoring | 15222.4
+
+/metrics snapshot (agent-side, after incident):
+  traffic: 5
+  latency_p50: 2651 ms
+  latency_p95: 3593 ms  (> challenge threshold 2000 ms, > SLO 3000 ms)
+  latency_p99: 3593 ms
+  error_breakdown: {}
+  quality_avg: 0.84
+
+Slowest log record:
+  correlation_id: req-339eacae
+  session_id: k4-challenge-s03
+  feature: monitoring
+  latency_ms: 3593
+  event: response_sent
+
+Incident log:
+  event: incident_enabled
+  payload.name: rag_slow
+  correlation_id: req-22af4a4d
+
+=== After fix: inject_incident.py --disable + load_test --challenge ===
+Recovery HTTP latencies (ms): ~157–174 per request
+incidents.rag_slow: false
+
+Note: /metrics still shows historical p95=3593 until process restart (in-memory counters).
