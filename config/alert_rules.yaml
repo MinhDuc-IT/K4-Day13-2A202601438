@@ -1,19 +1,19 @@
 alerts:
-  - name: TODO_alert_1
-    severity: TODO
-    condition: TODO
+  - name: api_tail_latency_slo_breach
+    severity: critical
+    condition: P95 response latency is greater than 3000 ms for 5 consecutive minutes.
     type: symptom-based
-    owner: TODO
+    owner: Dashboard, SLO & Alert owner
     runbook: docs/alerts.md#alert-1
-  - name: TODO_alert_2
-    severity: TODO
-    condition: TODO
+  - name: api_error_rate_slo_breach
+    severity: critical
+    condition: Error rate is greater than 2% for 5 consecutive minutes.
     type: symptom-based
-    owner: TODO
+    owner: Dashboard, SLO & Alert owner
     runbook: docs/alerts.md#alert-2
-  - name: TODO_alert_3
-    severity: TODO
-    condition: TODO
+  - name: answer_quality_degradation
+    severity: warning
+    condition: Mean quality proxy is below 0.75 for 15 consecutive minutes with at least 10 requests.
     type: symptom-based
-    owner: TODO
+    owner: Dashboard, SLO & Alert owner
     runbook: docs/alerts.md#alert-3
